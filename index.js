@@ -5,7 +5,7 @@ const app = express();
 const dotenv = require("dotenv");
 
 //importing Routes
-const UserRoute = require("./Router/user");
+const UserRoute = require("./Router/UserRoute");
 
 //env config
 dotenv.config();
