@@ -6,6 +6,8 @@ const dotenv = require("dotenv");
 
 //importing Routes
 const UserRoute = require("./Router/UserRoute");
+//Auth Router
+const AuthRouter = require("./Router/AuthRoute");
 
 //env config
 dotenv.config();
@@ -24,6 +26,8 @@ mongoose
 
 //middleware
 app.use(express.json());
+
+app.use("/api/auth", AuthRouter);
 //base Layer
 app.use("/api/user", UserRoute);
 

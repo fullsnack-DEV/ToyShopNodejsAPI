@@ -8,6 +8,9 @@ const User = require("../Models/UserModel");
 router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
 
+  if (!username && email && password)
+    return res.status(500).send("Please Enter the Credentials");
+
   const newUser = new User({
     username: username,
     email: email,
