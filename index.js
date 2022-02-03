@@ -9,6 +9,9 @@ const UserRoute = require("./Router/UserRoute");
 //Auth Router
 const AuthRouter = require("./Router/AuthRoute");
 
+//product Router
+const ProductRouter = require("./Router/ProductRoute");
+
 //env config
 dotenv.config();
 
@@ -26,10 +29,12 @@ mongoose
 
 //middleware
 app.use(express.json());
-
+//AuthbLayer
 app.use("/api/auth", AuthRouter);
-//base Layer
+//User Layer
 app.use("/api/user", UserRoute);
+//Product Layer
+app.use("/api/product", ProductRouter);
 
 //listining
 app.listen(process.env.PORT_NO || 5000, () => {
