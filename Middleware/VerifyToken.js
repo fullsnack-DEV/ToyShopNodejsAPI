@@ -13,7 +13,7 @@ const VerifyToken = (req, res, next) => {
       next();
     });
   } else {
-    res.status(400).json({
+    res.status(401).json({
       message: "You are not Authenticated ",
     });
   }
@@ -31,4 +31,23 @@ const VerifyTokenandAuthrozation = (req, res, next) => {
   });
 };
 
-module.exports = { VerifyToken, VerifyTokenandAuthrozation };
+const VerifyTokenandAdmin = (req, res, next) => {
+  //   console.log(req.headers.token);
+  VerifyToken(req, res, () => {
+    // console.log(req.headers.token, "2");
+    console.log(req.user);
+    if (req.user.isAdmin) {
+      next();
+    } else {
+      res.status(403).json({
+        message: "you are not allowed fool!",
+      });
+    }
+  });
+};
+
+module.exports = {
+  VerifyToken,
+  VerifyTokenandAuthrozation,
+  VerifyTokenandAdmin,
+};

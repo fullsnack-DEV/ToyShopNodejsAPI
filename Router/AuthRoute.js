@@ -81,7 +81,7 @@ router.post("/login", async (req, res) => {
 
     // checking the pass word with the user req password
 
-    console.log(req.body.password);
+    // console.log(req.body.password);
 
     OriginalPassword !== req.body.password &&
       res.status(500).json({

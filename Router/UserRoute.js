@@ -1,13 +1,14 @@
 const Cryptojs = require("crypto-js");
 const User = require("../Models/UserModel");
 
-const { VerifyTokenandAuthrozation } = require("../Middleware/VerifyToken");
+const {
+  VerifyTokenandAuthrozation,
+  VerifyTokenandAdmin,
+} = require("../Middleware/VerifyToken");
 
 const router = require("express").Router();
 
 router.put("/:id", VerifyTokenandAuthrozation, async (req, res) => {
-  console.log(req.params.id);
-
   if (req.body.password) {
     req.body.password = Cryptojs.AES.encrypt(
       req.body.password,
@@ -37,6 +38,41 @@ router.put("/:id", VerifyTokenandAuthrozation, async (req, res) => {
     res.status(500).json({
       message: Error,
       error,
+    });
+  }
+});
+
+router.delete("/:id", VerifyTokenandAuthrozation, async (req, res) => {
+  try {
+    //deleteing the user
+    //find the user
+
+    await User.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+      message: "User has been deleted",
+    });
+  } catch (err) {
+    res.status(400).json({
+      message: "failed to remove the Account ",
+    });
+  }
+});
+
+router.get("/find/:id", VerifyTokenandAdmin, async (req, res) => {
+  console.log(req.params.id);
+  try {
+    console.log(req.params.id);
+    const user = await User.findById(req.params.id);
+    const { password, ...others } = user._doc;
+    res.status(200).json({
+      message: "Success",
+      ...others,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "failded",
+      Error: err,
     });
   }
 });
