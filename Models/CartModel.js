@@ -23,3 +23,5 @@ const CartScehma = new mongoose.Schema(
 //exporting the Model
 //mongoose.model will create a model on the basis of the UserSchema
 module.exports = mongoose.model("Cart", CartScehma);
+
+//installiung JWT

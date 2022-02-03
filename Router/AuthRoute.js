@@ -5,6 +5,8 @@ const router = require("express").Router();
 const User = require("../Models/UserModel");
 //using crypto js to crypt the password
 const CryptoJS = require("crypto-js");
+//jwt
+const jwt = require("jsonwebtoken");
 
 //Registring the User
 router.post("/register", async (req, res) => {
@@ -41,7 +43,8 @@ router.post("/register", async (req, res) => {
 
 //login Function
 router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
+  //   console.log(req.body);
+  const { username } = req.body;
 
   try {
     //Something here
@@ -64,27 +67,42 @@ router.post("/login", async (req, res) => {
     );
 
     //convert password into string
-    const Password = hashedPassword.toString(CryptoJS.enc.Utf8);
+    const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
-    //checking the pass word with the user req password
+    // impelemt JWT
+    const accessToken = jwt.sign(
+      {
+        id: user._id,
+        isAdmin: user.isadmin,
+      },
+      process.env.JWT_SEC, //secret Key
+      { expiresIn: "3d" }
+    );
 
-    Password !== password &&
+    // checking the pass word with the user req password
+
+    console.log(req.body.password);
+
+    OriginalPassword !== req.body.password &&
       res.status(500).json({
         message: " Invalid Credential!",
       });
+
+    const { password, ...others } = user._doc;
 
     //if everything is Okay then return the user
 
     res.status(200).json({
       message: "Success",
       data: {
-        user,
+        ...others,
+        accessToken,
       },
     });
-  } catch (Error) {
+  } catch (err) {
     res.status(200).json({
-      message: "Failed",
-      err: Error,
+      message: "Failed some Error",
+      err,
     });
   }
 });
