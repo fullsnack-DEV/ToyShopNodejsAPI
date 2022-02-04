@@ -11,13 +11,14 @@ const AuthRouter = require("./Router/AuthRoute");
 
 //product Router
 const ProductRouter = require("./Router/ProductRoute");
+//order Router
+const OrderRouter = require("./Router/OrderRoute");
 
 //env config
 dotenv.config();
 
 //gettig momgoose to connect to the db
 const mongoose = require("mongoose");
-
 //Playing with the Router
 
 //Connecting application to the Mongo db Atlas Server
@@ -35,6 +36,8 @@ app.use("/api/auth", AuthRouter);
 app.use("/api/user", UserRoute);
 //Product Layer
 app.use("/api/product", ProductRouter);
+//ODer Layer
+app.use("api/order/", OrderRouter);
 
 //listining
 app.listen(process.env.PORT_NO || 5000, () => {
