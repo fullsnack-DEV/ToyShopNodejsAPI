@@ -10,6 +10,15 @@ const ProductScehma = new mongoose.Schema(
     size: { type: String },
     color: { type: String },
     price: { type: Number, required: true },
+    img: {
+      type: Object,
+      url: {
+        type: URL,
+      },
+      public_id: {
+        type: String,
+      },
+    },
   },
   { timestamps: true }
 );

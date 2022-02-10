@@ -4,31 +4,48 @@ const { VerifyTokenandAdmin } = require("../Middleware/VerifyToken");
 
 const router = require("express").Router();
 
-router.post("/", VerifyTokenandAdmin, async (req, res) => {
-  //We are getting the new product
-  //Create a new product in the Schema
+const cloudinary = require("../Cloud/index");
+const multer = require("../Middleware/multer");
 
-  const newProduct = new Product(req.body);
+router.post(
+  "/",
+  VerifyTokenandAdmin,
+  multer.single("img"),
+  async (req, res) => {
+    //We are getting the new product
+    //Create a new product in the Schema
+    console.log(req.file, "THis is the REq body");
+    const { title, desc, cateogries, size, price, img } = req.body;
 
-  //Get the newproduct schema
-  //we are savong the product
-
-  try {
-    //saving product in the saveprodyct
-    const savedproduct = await newProduct.save();
-    res.status(200).json({
-      message: "Success",
-      data: {
-        product: savedproduct,
-      },
+    const newProduct = new Product({
+      title,
+      desc,
+      cateogries,
+      size,
+      price,
+      img,
     });
-  } catch (error) {
-    res.status(500).json({
-      message: "Failed",
-      Errror: error,
-    });
+
+    //Get the newproduct schema
+    //we are savong the product
+
+    try {
+      //saving product in the saveprodyct
+      const savedproduct = await newProduct.save();
+      res.status(200).json({
+        message: "Success",
+        data: {
+          product: savedproduct,
+        },
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "Failed",
+        Errror: error,
+      });
+    }
   }
-});
+);
 
 router.put("/:id", VerifyTokenandAdmin, async (req, res) => {
   try {
