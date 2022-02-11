@@ -12,11 +12,14 @@ const ProductScehma = new mongoose.Schema(
     price: { type: Number, required: true },
     img: {
       type: Object,
+
       url: {
         type: URL,
+        required: true,
       },
       public_id: {
         type: String,
+        required: true,
       },
     },
   },
