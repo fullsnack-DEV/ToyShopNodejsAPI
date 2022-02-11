@@ -100,21 +100,16 @@ router.get("/find/:userid", VerifyTokenandAuthrozation, async (req, res) => {
 
 // // //get all Cart
 
- router.get('/' , VerifyTokenandAdmin , (req, res ) =>  {
-           
-       try {
-           const allcart = Cart.find(); 
-           res.status(200).json({
-               message: "Success" , 
-               data: {
-                   allcart
-               }
-           })
-       } catch (error) {
-           
-       }
-     
- })
-
+router.get("/", VerifyTokenandAdmin, (req, res) => {
+  try {
+    const allcart = Cart.find();
+    res.status(200).json({
+      message: "Success",
+      data: {
+        allcart,
+      },
+    });
+  } catch (error) {}
+});
 
 module.exports = router;
