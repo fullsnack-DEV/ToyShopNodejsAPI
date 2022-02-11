@@ -35,10 +35,10 @@ router.post(
       );
       console.log(url, "from cloudinary");
       newProduct.img = { url: url, public_id };
-      // console.log(newProduct.img, "product image");
+      console.log(newProduct.img, "product image");
     }
 
-    console.log(req.body);
+    console.log(req.body, "I am Hot body");
 
     //Get the newproduct schema
     //we are savong the product
