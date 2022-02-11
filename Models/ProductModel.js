@@ -6,8 +6,12 @@ const ProductScehma = new mongoose.Schema(
   {
     title: { type: String, required: true, unique: true },
     desc: { type: String, required: true },
-    cateogries: [Array],
     size: { type: String },
+    cateogries: [
+      {
+        type: String,
+      },
+    ],
     color: { type: String },
     price: { type: Number, required: true },
     img: {

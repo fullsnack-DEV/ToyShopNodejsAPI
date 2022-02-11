@@ -10,14 +10,21 @@ const multer = require("../Middleware/multer");
 router.post(
   "/",
   VerifyTokenandAdmin,
+
+  //parsing the data
+  (req, res, next) => {
+    const { cateogries } = req.body;
+    if (cateogries) req.body.cateogries = JSON.parse(cateogries);
+    next();
+  },
+
   multer.single("img"),
   async (req, res) => {
     //We are getting the new product
     //Create a new product in the Schema
-    console.log(req.file, "THis is the REq body");
+    // console.log(req.file, "THis is the REq body");
     const { file } = req;
     const { title, desc, cateogries, size, price, img } = req.body;
-    console.log(img);
 
     const newProduct = new Product({
       title,
@@ -28,17 +35,16 @@ router.post(
       img,
     });
 
+    console.log(cateogries, "I am Cat");
     //uploading to cloudinary
     if (file) {
       const { secure_url: url, public_id } = await cloudinary.uploader.upload(
         file.path
       );
-      console.log(url, "from cloudinary");
+      //console.log(url, "from cloudinary");
       newProduct.img = { url: url, public_id };
-      console.log(newProduct.img, "product image");
+      // console.log(newProduct.img, "product image");
     }
-
-    console.log(req.body, "I am Hot body");
 
     //Get the newproduct schema
     //we are savong the product
@@ -47,6 +53,8 @@ router.post(
       //saving product in the saveprodyct
 
       const savedproduct = await newProduct.save();
+      // console.log(savedproduct.cateogries);
+
       res.status(200).json({
         message: "Success",
         data: {

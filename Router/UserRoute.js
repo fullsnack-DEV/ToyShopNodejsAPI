@@ -60,9 +60,7 @@ router.delete("/:id", VerifyTokenandAuthrozation, async (req, res) => {
 });
 
 router.get("/find/:id", VerifyTokenandAdmin, async (req, res) => {
-  console.log(req.params.id);
   try {
-    console.log(req.params.id);
     const user = await User.findById(req.params.id);
     const { password, ...others } = user._doc;
     res.status(200).json({

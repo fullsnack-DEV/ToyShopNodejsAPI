@@ -2,7 +2,7 @@ const multer = require("multer");
 const storage = multer.diskStorage({});
 
 const fileFilter = (req, file, cb) => {
-  console.log(file);
+  // console.log(file);
 
   if (!file.mimetype.includes("image")) {
     return cb("invalid image format!", false);
