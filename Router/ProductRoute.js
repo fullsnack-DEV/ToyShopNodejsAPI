@@ -35,25 +35,18 @@ router.post(
       img,
     });
 
-    console.log(cateogries, "I am Cat");
-    //uploading to cloudinary
     if (file) {
       const { secure_url: url, public_id } = await cloudinary.uploader.upload(
         file.path
       );
-      //console.log(url, "from cloudinary");
-      newProduct.img = { url: url, public_id };
-      // console.log(newProduct.img, "product image");
-    }
 
-    //Get the newproduct schema
-    //we are savong the product
+      newProduct.img = { url: url, public_id };
+    }
+    t;
 
     try {
-      //saving product in the saveprodyct
-
       const savedproduct = await newProduct.save();
-      // console.log(savedproduct.cateogries);
+      console.log(savedproduct.cateogries, "From Saved Product");
 
       res.status(200).json({
         message: "Success",
@@ -65,6 +58,7 @@ router.post(
       res.status(500).json({
         message: "Failed",
         Errror: error,
+        message: "Failded Badly",
       });
     }
   }
