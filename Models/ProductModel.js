@@ -6,14 +6,14 @@ const ProductScehma = new mongoose.Schema(
   {
     title: { type: String, required: true, unique: true },
     desc: { type: String, required: true },
-    size: { type: String },
+    size: { type: String, unique: true },
     cateogries: [
       {
         type: String,
       },
     ],
     color: { type: String },
-    price: { type: Number, required: true },
+    price: { type: Number },
     img: {
       type: Object,
 

@@ -41,12 +41,12 @@ router.post(
       );
 
       newProduct.img = { url: url, public_id };
+      console.log(newProduct.img);
     }
-    t;
 
     try {
       const savedproduct = await newProduct.save();
-      console.log(savedproduct.cateogries, "From Saved Product");
+      // console.log(savedproduct.cateogries, "From Saved Product");
 
       res.status(200).json({
         message: "Success",
