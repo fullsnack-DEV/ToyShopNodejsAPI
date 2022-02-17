@@ -10,7 +10,6 @@ const multer = require("../Middleware/multer");
 router.post(
   "/",
   VerifyTokenandAdmin,
-
   //parsing the data
   (req, res, next) => {
     const { cateogries } = req.body;
@@ -22,7 +21,7 @@ router.post(
   async (req, res) => {
     const { file } = req;
     const { title, desc, cateogries, size, price, img } = req.body;
-    // console.log(req.body, "title from body");
+    console.log(req.body, "title from body");
 
     const newProduct = new Product({
       title,

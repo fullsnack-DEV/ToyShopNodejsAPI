@@ -30,7 +30,6 @@ mongoose
 
 //middleware
 
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //AuthbLayer
 app.use("/api/auth", AuthRouter);
