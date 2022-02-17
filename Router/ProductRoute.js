@@ -20,11 +20,9 @@ router.post(
 
   multer.single("img"),
   async (req, res) => {
-    //We are getting the new product
-    //Create a new product in the Schema
-    // console.log(req.file, "THis is the REq body");
     const { file } = req;
     const { title, desc, cateogries, size, price, img } = req.body;
+    // console.log(req.body, "title from body");
 
     const newProduct = new Product({
       title,
@@ -41,12 +39,11 @@ router.post(
       );
 
       newProduct.img = { url: url, public_id };
-      console.log(newProduct.img);
+      // console.log(newProduct.img);
     }
 
     try {
       const savedproduct = await newProduct.save();
-      // console.log(savedproduct.cateogries, "From Saved Product");
 
       res.status(200).json({
         message: "Success",
