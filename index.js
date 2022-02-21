@@ -14,6 +14,9 @@ const ProductRouter = require("./Router/ProductRoute");
 //order Router
 const OrderRouter = require("./Router/OrderRoute");
 
+//Coupons Router
+const CouponsRouter = require("./Router/CouponsRoute");
+
 //env config
 dotenv.config();
 
@@ -38,7 +41,9 @@ app.use("/api/user", UserRoute);
 //Product Layer
 app.use("/api/product", ProductRouter);
 //ODer Layer
-app.use("api/order/", OrderRouter);
+app.use("/api/order/", OrderRouter);
+// Coupons Layer
+app.use("/api/coupons", CouponsRouter);
 
 //listining
 app.listen(process.env.PORT_NO || 5000, () => {
