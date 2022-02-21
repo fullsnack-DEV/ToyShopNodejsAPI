@@ -16,12 +16,14 @@ router.post(
     if (cateogries) req.body.cateogries = JSON.parse(cateogries);
     next();
   },
+  //producing
 
   multer.single("img"),
   async (req, res) => {
     const { file } = req;
-    const { title, desc, cateogries, size, price, img } = req.body;
-    console.log(req.body, "title from body");
+    const { title, desc, cateogries, size, price, img, dialogue } = req.body;
+    //Destrucuring from the body
+    console.log(dialogue, "Coming from API");
 
     const newProduct = new Product({
       title,
@@ -30,6 +32,7 @@ router.post(
       size,
       price,
       img,
+      dialogue,
     });
 
     if (file) {
@@ -61,6 +64,10 @@ router.post(
 );
 
 router.put("/:id", VerifyTokenandAdmin, async (req, res) => {
+  console.log(req.params.id);
+  const { dialogue } = req.body;
+  console.log(dialogue);
+
   try {
     const updateProduct = await Product.findByIdAndUpdate(
       req.params.id,
@@ -147,6 +154,8 @@ router.get("/", async (req, res) => {
 
     res.status(200).json({
       message: "Success",
+      length: product.length,
+
       data: {
         product,
       },
@@ -160,3 +169,5 @@ router.get("/", async (req, res) => {
 });
 
 module.exports = router;
+
+//What, You Haven't Heard Of Me? No, You Wouldn't Have Heard Of Me

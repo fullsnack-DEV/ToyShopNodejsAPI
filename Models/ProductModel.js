@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const ProductScehma = new mongoose.Schema(
   {
     title: { type: String, required: true, unique: true },
+    dialogue: { type: String, unique: true },
     desc: { type: String, required: true },
     size: { type: String },
     cateogries: [
@@ -14,6 +15,7 @@ const ProductScehma = new mongoose.Schema(
     ],
     color: { type: String },
     price: { type: Number, required: true },
+
     img: {
       type: Object,
 
@@ -27,10 +29,14 @@ const ProductScehma = new mongoose.Schema(
   },
   { timestamps: true }
 );
-//done with the thon
 
+//
 //exporting the Model
 //this is the product
-
+// produst
 //mongoose.model will create a model on the basis of the UserSchema
 module.exports = mongoose.model("Product", ProductScehma);
+
+//Resolve the error in uploading the product data 😊
+//REact from in react native
+//reat antive from the
