@@ -22,9 +22,7 @@ router.post("/", async (req, res) => {
     const savedCart = await newCart.save();
     res.status(200).json({
       message: "Success",
-      data: {
-        product: savedCart,
-      },
+      data: savedCart,
     });
   } catch (error) {
     res.status(500).json({
@@ -50,9 +48,7 @@ router.put("/:id", VerifyTokenandAuthrozation, async (req, res) => {
 
     res.status(200).json({
       message: "Success",
-      data: {
-        updateCart,
-      },
+      data: updateCart,
     });
   } catch (error) {
     res.status(500).json({
@@ -88,7 +84,7 @@ router.get("/find/:userid", VerifyTokenandAuthrozation, async (req, res) => {
 
     res.status(200).json({
       message: "Success",
-      Product: cart,
+      data: cart,
     });
   } catch (err) {
     res.status(500).json({
@@ -105,16 +101,19 @@ router.get("/", VerifyTokenandAdmin, (req, res) => {
     const allcart = Cart.find();
     res.status(200).json({
       message: "Success",
-      data: {
-        allcart,
-      },
+      data: allcart,
     });
-  } catch (error) {}
+  } catch (error) {
+    res.status(400).json({
+      message: "Failed",
+      Error: error,
+    });
+  }
 });
 
 module.exports = router;
 
-//Todo 
+//Todo
 // 1> Make the Json data for the Toys > Change the Schema Add the price title image field
-// 2 > Make one route for the onboarding screen Data 
+// 2 > Make one route for the onboarding screen Data
 // 3 > If possible then add the Add to cart fucntinaloti in Backend As well

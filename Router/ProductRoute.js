@@ -49,9 +49,7 @@ router.post(
 
       res.status(200).json({
         message: "Success",
-        data: {
-          product: savedproduct,
-        },
+        data: savedproduct,
       });
     } catch (error) {
       res.status(500).json({
@@ -81,9 +79,7 @@ router.put("/:id", VerifyTokenandAdmin, async (req, res) => {
 
     res.status(200).json({
       message: "Success",
-      data: {
-        updateProduct,
-      },
+      data: updateProduct,
     });
   } catch (error) {
     res.status(500).json({

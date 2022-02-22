@@ -22,9 +22,7 @@ router.post("/", async (req, res) => {
     const savedOrder = await newOrder.save();
     res.status(200).json({
       message: "Success",
-      data: {
-        product: savedOrder,
-      },
+      data: savedOrder,
     });
   } catch (error) {
     res.status(500).json({
@@ -50,9 +48,7 @@ router.put("/:id", VerifyTokenandAuthrozation, async (req, res) => {
 
     res.status(200).json({
       message: "Success",
-      data: {
-        updateOrder,
-      },
+      data: updateOrder,
     });
   } catch (error) {
     res.status(500).json({
@@ -89,7 +85,7 @@ router.get("/find/:userid", VerifyTokenandAdmin, async (req, res) => {
 
     res.status(200).json({
       message: "Success",
-      Product: Order,
+      data: Order,
     });
   } catch (err) {
     res.status(500).json({
@@ -106,9 +102,7 @@ router.get("/", VerifyTokenandAdmin, (req, res) => {
     const allOrders = Order.find();
     res.status(200).json({
       message: "Success",
-      data: {
-        allOrders,
-      },
+      data: allOrders,
     });
   } catch (error) {}
 });

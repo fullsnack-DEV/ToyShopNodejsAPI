@@ -30,9 +30,7 @@ router.put("/:id", VerifyTokenandAuthrozation, async (req, res) => {
 
     res.status(200).json({
       message: "Suucess",
-      data: {
-        updateduser,
-      },
+      data: updateduser,
     });
   } catch (error) {
     res.status(500).json({
@@ -86,9 +84,7 @@ router.get("/", VerifyTokenandAdmin, async (req, res) => {
 
     res.status(200).json({
       message: "Success",
-      data: {
-        users,
-      },
+      data: users,
     });
   } catch (err) {
     res.status(500).json({
@@ -101,4 +97,3 @@ router.get("/", VerifyTokenandAdmin, async (req, res) => {
 module.exports = router;
 
 //Acces token
-//"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZmFjMzhmZGQ1NDBiMzYxMzM4MjRhZSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDM4Nzk0MDUsImV4cCI6MTY0NDEzODYwNX0.4RH26thUpA_i6lNASLnVm1OIz2lY1M_eVCWOfhc4jto"
