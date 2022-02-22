@@ -46,6 +46,6 @@ app.use("/api/order/", OrderRouter);
 app.use("/api/coupons", CouponsRouter);
 
 //listining
-app.listen(process.env.PORT_NO || 5000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log("Listning from Backend . . .");
 });
