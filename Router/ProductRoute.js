@@ -156,9 +156,7 @@ router.get("/", async (req, res) => {
       message: "Success",
       length: product.length,
 
-      data: {
-        product,
-      },
+      data: product,
     });
   } catch (err) {
     res.status(500).json({
