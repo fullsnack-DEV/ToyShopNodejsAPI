@@ -87,4 +87,11 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+///deleteing the Product
+
+//Also havr to add some Few products with different  
+//Categories so that we can make the few lists in the frontend
+//part with new listings 
+
+
 module.exports = router;

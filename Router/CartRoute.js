@@ -113,3 +113,8 @@ router.get("/", VerifyTokenandAdmin, (req, res) => {
 });
 
 module.exports = router;
+
+//Todo 
+// 1> Make the Json data for the Toys > Change the Schema Add the price title image field
+// 2 > Make one route for the onboarding screen Data 
+// 3 > If possible then add the Add to cart fucntinaloti in Backend As well

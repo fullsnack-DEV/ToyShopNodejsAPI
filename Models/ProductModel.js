@@ -32,8 +32,7 @@ const ProductScehma = new mongoose.Schema(
 
 //
 //exporting the Model
-//this is the product
-// produst
+
 //mongoose.model will create a model on the basis of the UserSchema
 module.exports = mongoose.model("Product", ProductScehma);
 

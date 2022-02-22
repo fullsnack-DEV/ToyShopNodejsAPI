@@ -7,7 +7,7 @@ const {
 
 const router = require("express").Router();
 
-//create Order
+//create Ord
 router.post("/", async (req, res) => {
   //We are getting the new product
   //Create a new product in the Schema

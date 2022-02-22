@@ -106,7 +106,7 @@ router.delete("/:id", VerifyTokenandAdmin, async (req, res) => {
     });
   } catch (err) {
     res.status(400).json({
-      message: "failed to remove the Account ",
+      message: "failed to remove the Product ",
     });
   }
 });

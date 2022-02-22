@@ -35,7 +35,7 @@ const VerifyTokenandAdmin = (req, res, next) => {
   //   console.log(req.headers.token);
   VerifyToken(req, res, () => {
     // console.log(req.headers.token, "2");
-    console.log(req.user);
+    // console.log(req.user);
     if (req.user.isAdmin) {
       next();
     } else {
